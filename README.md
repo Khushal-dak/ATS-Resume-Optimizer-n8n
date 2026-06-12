@@ -82,7 +82,7 @@ The workflow calculates:
 
 The system automatically updates the resume according to the Job Description.
 
-![Optimized Resume](screenshots/2.png)
+![Optimized Resume](n8n/2.png)
 
 ---
 
