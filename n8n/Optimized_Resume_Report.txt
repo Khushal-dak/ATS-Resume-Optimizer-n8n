@@ -1,0 +1,139 @@
+ATS RESUME OPTIMIZATION REPORT
+
+ATS SCORE:
+40
+
+MISSING KEYWORDS:
+• Snowflake
+• cloud data platforms
+• Python
+
+STRENGTHS:
+• Basic understanding of databases and data concepts (MySQL, Microsoft SQL Server, MongoDB)
+• Fundamental knowledge of SQL (explicitly listed as SQL Server and MySQL)
+• Good analytical thinking and problem-solving skills (listed as Soft Skills)
+• Academic projects exposure (multiple projects listed)
+• Willingness to learn (stated in Objective)
+• Teamwork abilities (implied through project collaboration and implied from 'Leadership' soft skill, though not explicitly stated)
+
+WEAKNESSES:
+• No explicit mention of Snowflake.
+• No explicit mention of other cloud data platforms.
+• Python is listed as a skill (basics in Kick start your programming career with C. Crash course on python), but not highlighted as a core skill in the main skills section.
+• While .NET is a strength in terms of technical skills, it's not directly relevant to the core technologies mentioned in the job description (Snowflake).
+
+RECOMMENDATIONS:
+• Highlight any experience or exposure to cloud-based databases or data warehousing concepts, even if not Snowflake.
+• Emphasize the willingness to learn Snowflake and cloud data platforms more prominently in the objective or a dedicated section.
+• If there are any projects where Python was used for data manipulation or scripting, mention them.
+• Reorder or rephrase the skills section to prioritize SQL and data concepts, and potentially de-emphasize .NET if it's not a core requirement for the internship's learning objectives.
+• Consider adding a sentence about interest in data engineering or data warehousing within the objective or a summary section.
+• Python has been added to the skills section.
+
+IMPORTANT:
+
+Do not break sentences into multiple short lines.
+
+Use normal resume formatting.
+
+Keep paragraphs in a single line.
+
+Only start a new line when a new section begins.
+
+OPTIMIZED RESUME
+
+Khushal Dak
+khushaldak4444@gmail.com 8955026683 India khushal-dak Khushal-dak
+
+OBJECTIVE
+Enthusiastic beginner with a strong foundation in databases and SQL, eager to gain practical experience in cloud data platforms and data warehousing. Seeking an internship opportunity to leverage analytical thinking and problem-solving skills, and contribute to real-world projects while developing expertise in Snowflake.
+
+ACADEMICS
+Bachelor of Technology (B.Tech) – Computer Science Engineering
+Rajasthan Technical University
+Latest SGPA: 9.04 (4th Semester).
+08/2023 – 06/2027
+Udaipur
+
+12th class
+Navbharat Sr. Sec. School
+Percentage : 69.20%
+04/2022 – 03/2023
+Udaipur
+
+10th class
+Guru Nanak Public Sr. Sec. School
+Percentage : 88.00%
+04/2020 – 03/2021
+Udaipur
+
+SKILLS
+Languages
+•C, C++, C#
+•Data Structures and Algorithms (DSA)
+•Python (basics)
+
+Web Technologies
+•HTML5, CSS3, JavaScript (ES6+)
+•.NET Framework, ASP.NET MVC
+•React.js
+
+Databases
+•MySQL
+•Microsoft SQL Server (SSMS)
+•MongoDB
+•Fundamental knowledge of SQL
+•Basic understanding of cloud data platforms
+
+Soft Skills
+•Analytical Thinking
+•Problem-Solving
+•Leadership
+•Public Speaking
+•Teamwork and Communication
+
+PROJECTS
+Inventory Management System
+•Developed a complete inventory solution from both supplier and customer perspectives.
+•Implemented product management, stock tracking, and order handling features.
+•Focused on usability and real-world business workflow.
+•Developed using .Net with C# and SSMS.
+
+Trip Trek – Trip Management System
+•Designed a system where users enter a budget, and the application suggests routes, destinations, activities, and accommodation.
+•Technologies: HTML, CSS, JavaScript with backend & database integration.
+•Focused on logic building and budget-based decision systems.
+
+Whatsaap Clone (Frontend)
+•Built a responsive WhatsAap Web Login UI using HTML, CSS, and JavaScript.
+•Implemented interactive UI components and dynamic content rendering.
+
+FocusED – Distraction-Free Education Platform
+•Developed a distraction-free educational web application for Class 6 to College students by eliminating ads and irrelevant content.
+•Designed a clean, minimal, user-centric interface to improve focus and learning productivity.
+•Organized structured educational content to reduce unnecessary research effort for learners.
+•Implemented the application using HTML, CSS, and JavaScript, focusing on performance and usability.
+
+Swasthya Sarthi (SIH – AICTE, MIC Student Innovation)
+•Developed a user-friendly healthcare support platform to simplify hospital services.
+•Features include appointment booking, queue reduction, common ailment guidance, and basic prescription generation.
+•Technologies: HTML, CSS, JavaScript, MySQL.
+
+Scan & Dine – QR-based Restaurant Ordering System
+•Built an offline QR-based ordering system to reduce manual staff dependency using AI.
+•Customers can scan QR codes placed on tables and place orders digitally.
+•Technologies: React.js, Node.js, Express.js, MongoDB (Atlas).
+
+CERTIFICATES
+Kick start your programming career with C.
+Crash course on python
+Introduction to SQL
+HTML, CSS, and Javascript for Web Developers
+Introduction C plus plus
+
+AWARDS
+IDE(Innovation, Design and Entrepreneurship) Bootcamp Participation.
+Successfully completed IDE Bootcamp with hands-on training in full-stack development, real-world project implementation, and industry-oriented coding practices.
+
+EON-XR club member of India.
+Worked with EON XR platform to explore immersive AR/VR technologies, creating and interacting with 3D virtual environments to enhance practical learning and visualization skills.
