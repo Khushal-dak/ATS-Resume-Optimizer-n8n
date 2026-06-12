@@ -1,0 +1,307 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "ATS Resume Builder",
+        "formDescription": "Paste your Job Description and generate ATS friendly resume.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Full Name",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Email",
+              "fieldType": "email",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Job Description",
+              "fieldType": "textarea",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Resume File",
+              "fieldType": "file",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.6,
+      "position": [
+        -240,
+        -16
+      ],
+      "id": "d51f664d-5579-42a1-9b42-e31ee7b1810a",
+      "name": "On form submission",
+      "webhookId": "f54330b0-2396-4983-a43d-2bc2a65a57ab"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1f75a1UW_E6oBqaOGEPu60pRxjZLz7h7mSM9F-5rj-sk",
+          "mode": "list",
+          "cachedResultName": "ResumeData",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f75a1UW_E6oBqaOGEPu60pRxjZLz7h7mSM9F-5rj-sk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1f75a1UW_E6oBqaOGEPu60pRxjZLz7h7mSM9F-5rj-sk/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -64,
+        -16
+      ],
+      "id": "90a82da0-60e6-4ad2-9daf-39d4f6b5038e",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "A6YAgiUGzoC8G0Wk",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "binaryPropertyName": "Resume_File",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        -240,
+        -176
+      ],
+      "id": "6e5df407-1710-4bf1-bb63-9ea785ead633",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Analyze the resume against the job description.\n\nResume:\n{{ $('Extract from File').item.json.text }}\n\nJob Description:\n{{ $('On form submission').item.json[\"Job Description\"] }}\n\nReturn ONLY valid JSON:\n\n{\n\"ats_score\": 0,\n\"missing_keywords\": [],\n\"strengths\": [],\n\"weaknesses\": [],\n\"suggestions\": []\n}\n",
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        64,
+        -192
+      ],
+      "id": "0da543c8-ab9d-4e3b-a003-93ffa3c76f5f",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.5-flash-lite",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        320,
+        32
+      ],
+      "id": "119b9231-7a01-4b6e-89cd-dc42c7261514",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "Zu5g5rdCjSirQKas",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=ORIGINAL RESUME:\n\n{{ $('Extract from File').item.json.text }}\n\nATS REPORT:\n\n{{ $('Basic LLM Chain').item.json.text }}\n\nJOB DESCRIPTION:\n\n{{ $('On form submission').item.json[\"Job Description\"] }}\n\nYou are an ATS Resume Optimization Expert.\n\nTASK:\n- Keep original structure.\n- Keep same section names.\n- Improve only necessary content.\n- Add missing keywords naturally.\n- Remove irrelevant content.\n- Do not add fake experience.\n\nIMPORTANT:\nReturn plain text only.\nDo not return JSON.\nDo not return markdown.\nDo not use \\n characters.\nReturn only the final optimized resume.",
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        320,
+        -192
+      ],
+      "id": "63a83b4d-a739-466a-9916-28edf5c77ca0",
+      "name": "Resume Writer"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=ATS ANALYSIS:\n\n{{ $('Basic LLM Chain').item.json.text }}\n\n---\n\nOPTIMIZED RESUME:\n\n{{ $('Resume Writer').item.json.text }}\n\n---\n\nCreate a professional ATS Resume Optimization Report.\n\nRules:\n\n1. Extract the ATS Score from ATS Analysis.\n2. Extract all Missing Keywords.\n3. Extract all Strengths.\n4. Extract all Weaknesses.\n5. Show the complete optimized resume at the end.\n6. Do NOT show JSON.\n7. Do NOT show code blocks.\n8. Do NOT show markdown formatting.\n9. Return clean readable plain text only.\n10. Preserve line breaks in the optimized resume.\n11. Keep section headings clearly separated.\n12. Do not add explanations outside the report.\n13. If ATS Analysis contains recommendations, include them under \"RECOMMENDATIONS\".\n14. If any missing keyword has already been added to the optimized resume, mention it in recommendations.\n\nATS RESUME OPTIMIZATION REPORT\n\nATS SCORE:\n<score>\n\nMISSING KEYWORDS:\n• keyword1\n• keyword2\n• keyword3\n\nSTRENGTHS:\n• point1\n• point2\n\nWEAKNESSES:\n• point1\n• point2\n\nRECOMMENDATIONS:\n• recommendation1\n• recommendation2\n\nIMPORTANT:\n\nDo not break sentences into multiple short lines.\n\nUse normal resume formatting.\n\nKeep paragraphs in a single line.\n\nOnly start a new line when a new section begins.\n\nOPTIMIZED RESUME\n\n<full optimized resume>",
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        576,
+        -192
+      ],
+      "id": "58175faa-213d-4890-993d-85c7f2702dd9",
+      "name": "Basic LLM Chain1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const report = $input.first().json.text;\n\nreturn [\n{\njson: {\nreport: report\n.replace(/\\\\n/g, '\\n')\n.replace(/\\\\\"/g, '\"')\n.replace(/\\\\t/g, ' ')\n}\n}\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        816,
+        -16
+      ],
+      "id": "ba90cbfd-0d16-4568-8de8-8f15097f8faf",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "operation": "toText",
+        "sourceProperty": "report",
+        "options": {
+          "fileName": "Optimized_Resume_Report.txt"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        960,
+        -16
+      ],
+      "id": "443b994a-7fca-4186-86b5-a79d139d837b",
+      "name": "Convert to File1"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Resume Writer",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Basic LLM Chain1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Resume Writer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Resume Writer": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "Convert to File1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File1": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "316e3a7f-f151-4728-9c51-26f74174d235",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "cbdd375fa237a90dcd2114dd4c90dd9e72b42cc08faad266be77563d55dd75ed"
+  },
+  "nodeGroups": [],
+  "id": "QdfdCptjiStuVt2Q",
+  "tags": []
+}
