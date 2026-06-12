@@ -28,7 +28,7 @@ This project automatically analyzes a resume against a job description and gener
 
 ## 🔄 Workflow
 
-![Workflow](n8n/My workflow.json)
+![Workflow](n8n/workflow.png)
 
 ---
 
@@ -37,9 +37,31 @@ This project automatically analyzes a resume against a job description and gener
 Users upload:
 
 - Resume (PDF)
-- Job Description
+![Form](n8n/old.png)
 
-![Form](n8n/2.png)
+- Job Description
+About the job
+About Claroda
+We are a new-age boutique Snowflake-focused Systems Integrator, founded by industry veterans who have spent decades building high‑performing technology organizations and delivering large‑scale digital transformation. Now, we’re coming together with a singular mission: to help customers unlock the full power of the Snowflake Data Cloud through expert advisory, architecture excellence, and world‑class implementation.
+Internship Details
+Mode: Complete Remote Opportunity
+Internship Type: Internship (Snowflake-focused)
+What We’re Looking For
+Basic understanding of databases and data concepts
+Fundamental knowledge of SQL (preferred)
+Willingness to learn Snowflake and cloud data platforms
+Good analytical thinking and problem-solving skills
+Effective communication and teamwork abilities
+Eligibility
+Recent graduates or final-year students from any technical background
+Academic projects or internship exposure is a plus but not mandatory
+Why Join This Internship?
+Structured learning focused on Snowflake fundamentals
+Hands-on exposure to real-world data scenarios
+Snowflake Certification will be provided upon successful completion
+Guidance and mentorship from industry professionals
+Flexible and supportive remote learning environment
+Note: This is a paid internship.Skills: sql,dsa,python
 
 ---
 
@@ -60,15 +82,7 @@ The workflow calculates:
 
 The system automatically updates the resume according to the Job Description.
 
-![Optimized Resume](screenshots/optimized-resume.png)
-
----
-
-## 📄 Downloadable Report
-
-Final ATS Report can be downloaded as a text file.
-
-![Download Report](screenshots/download-report.png)
+![Optimized Resume](screenshots/2.png)
 
 ---
 
@@ -98,4 +112,4 @@ Khushal Dak
 
 LinkedIn: www.linkedin.com/in/khushal-dak
 
-GitHub: https://github.com/yourusername
+GitHub: https://github.com/Khushal-dak
