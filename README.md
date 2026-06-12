@@ -28,7 +28,7 @@ This project automatically analyzes a resume against a job description and gener
 
 ## 🔄 Workflow
 
-![Workflow](screenshots/workflow.png)
+![Workflow](n8n/My workflow.json)
 
 ---
 
@@ -39,7 +39,7 @@ Users upload:
 - Resume (PDF)
 - Job Description
 
-![Form](screenshots/form.png)
+![Form](n8n/2.png)
 
 ---
 
@@ -52,7 +52,7 @@ The workflow calculates:
 - Resume Strengths
 - Resume Weaknesses
 
-![ATS Report](screenshots/ats-report.png)
+![ATS Report](n8n/1.png)
 
 ---
 
