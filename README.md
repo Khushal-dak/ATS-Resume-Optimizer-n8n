@@ -28,7 +28,7 @@ This project automatically analyzes a resume against a job description and gener
 
 ## 🔄 Workflow
 
-![Workflow](old.png)
+![Workflow](n8n/workflow.png)
 
 ---
 
@@ -37,7 +37,7 @@ This project automatically analyzes a resume against a job description and gener
 Users upload:
 
 - Resume (PDF)
-![Form](n8n/old.png)
+![Form](old.png)
 
 - Job Description
 About the job
