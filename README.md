@@ -28,7 +28,7 @@ This project automatically analyzes a resume against a job description and gener
 
 ## 🔄 Workflow
 
-![Workflow](n8n/workflow.png)
+![Workflow](old.png)
 
 ---
 
